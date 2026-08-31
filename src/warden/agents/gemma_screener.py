@@ -111,11 +111,27 @@ def screen_with_gemma_sync(manifest: CapabilityManifest) -> GemmaScreenResult:
             from google.genai import types
 
             client = genai.Client(api_key=api_key, vertexai=False)
-            resp = client.models.generate_content(
-                model=GEMMA_MODEL_ID,
-                contents=GEMMA_PROMPT + manifest.model_dump_json(),
-                config=types.GenerateContentConfig(temperature=0.0, max_output_tokens=1024),
-            )
+            
+            # Try configured model ID or fallback to standard Gemma IDs
+            model_candidates = [GEMMA_MODEL_ID, "gemma-4-31b-it", "models/gemma-4-31b-it", "gemma-4-26b-a4b-it"]
+            resp = None
+            used_model = GEMMA_MODEL_ID
+            
+            for m in model_candidates:
+                try:
+                    resp = client.models.generate_content(
+                        model=m,
+                        contents=GEMMA_PROMPT + manifest.model_dump_json(),
+                        config=types.GenerateContentConfig(temperature=0.0, max_output_tokens=1024),
+                    )
+                    used_model = m
+                    break
+                except Exception as inner_e:
+                    continue
+
+            if resp is None:
+                raise RuntimeError("All Gemma model candidates failed to generate content")
+
             # Find all parts if multi-part text
             full_text = ""
             if resp.candidates and resp.candidates[0].content and resp.candidates[0].content.parts:
@@ -131,12 +147,13 @@ def screen_with_gemma_sync(manifest: CapabilityManifest) -> GemmaScreenResult:
                     is_suspicious=bool(data.get("is_suspicious", False)),
                     preliminary_risk=risk,
                     summary=str(data.get("summary", ""))[:200],
-                    model=GEMMA_MODEL_ID,
+                    model=used_model,
                     screened_by="gemma",
                 )
         except Exception as e:
-            # print(f"Gemma API error: {e}")
-            pass
+            import traceback
+            print(f"[GEMMA SCREENER ERROR]: {e}")
+            traceback.print_exc()
         # Any failure -> honest labeled fallback (never breaks the pipeline).
         return _heuristic(manifest)
 
