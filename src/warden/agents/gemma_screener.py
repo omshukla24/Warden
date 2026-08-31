@@ -73,13 +73,25 @@ def _parse_json(text: str):
     if not text:
         return None
     cleaned = re.sub(r"```(?:json)?", "", text).strip()
-    m = re.search(r"\{.*\}", cleaned, re.DOTALL)
-    if not m:
-        return None
     try:
-        return json.loads(m.group(0))
+        return json.loads(cleaned)
     except Exception:
-        return None
+        pass
+    matches = re.findall(r"\{[^{}]*\}", cleaned, re.DOTALL)
+    for block in reversed(matches):
+        try:
+            d = json.loads(block)
+            if "is_suspicious" in d or "preliminary_risk" in d:
+                return d
+        except Exception:
+            continue
+    m = re.search(r"\{.*\}", cleaned, re.DOTALL)
+    if m:
+        try:
+            return json.loads(m.group(0))
+        except Exception:
+            pass
+    return None
 
 
 def screen_with_gemma_sync(manifest: CapabilityManifest) -> GemmaScreenResult:
@@ -90,20 +102,28 @@ def screen_with_gemma_sync(manifest: CapabilityManifest) -> GemmaScreenResult:
                 is_suspicious=False, preliminary_risk=0,
                 summary="Gemma screening disabled", model="disabled", screened_by="disabled",
             )
-        if not GEMMA_API_KEY:
+        api_key = GEMMA_API_KEY or os.environ.get("GEMMA_API_KEY", "")
+        if not api_key:
             # No Developer API key configured -> honest, clearly-labeled fallback.
             return _heuristic(manifest)
         try:
             from google import genai
             from google.genai import types
 
-            client = genai.Client(api_key=GEMMA_API_KEY)
+            client = genai.Client(api_key=api_key, vertexai=False)
             resp = client.models.generate_content(
                 model=GEMMA_MODEL_ID,
                 contents=GEMMA_PROMPT + manifest.model_dump_json(),
-                config=types.GenerateContentConfig(temperature=0.0, max_output_tokens=256),
+                config=types.GenerateContentConfig(temperature=0.0, max_output_tokens=1024),
             )
-            data = _parse_json(getattr(resp, "text", "") or "")
+            # Find all parts if multi-part text
+            full_text = ""
+            if resp.candidates and resp.candidates[0].content and resp.candidates[0].content.parts:
+                full_text = "\n".join(p.text for p in resp.candidates[0].content.parts if p.text)
+            else:
+                full_text = getattr(resp, "text", "") or ""
+
+            data = _parse_json(full_text)
             if data is not None:
                 risk = int(data.get("preliminary_risk", 0) or 0)
                 risk = max(0, min(100, risk))
@@ -112,9 +132,10 @@ def screen_with_gemma_sync(manifest: CapabilityManifest) -> GemmaScreenResult:
                     preliminary_risk=risk,
                     summary=str(data.get("summary", ""))[:200],
                     model=GEMMA_MODEL_ID,
-                    screened_by="gemma-2",
+                    screened_by="gemma",
                 )
-        except Exception:
+        except Exception as e:
+            # print(f"Gemma API error: {e}")
             pass
         # Any failure -> honest labeled fallback (never breaks the pipeline).
         return _heuristic(manifest)
