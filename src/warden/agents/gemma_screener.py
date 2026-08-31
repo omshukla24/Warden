@@ -112,8 +112,8 @@ def screen_with_gemma_sync(manifest: CapabilityManifest) -> GemmaScreenResult:
 
             client = genai.Client(api_key=api_key, vertexai=False)
             
-            # Try configured model ID or fallback to standard Gemma IDs
-            model_candidates = [GEMMA_MODEL_ID, "gemma-2-9b-it", "gemma-2-27b-it", "gemma-4-31b-it", "models/gemma-4-31b-it"]
+            # Try configured model ID or fallback to standard Gemma 2 IDs
+            model_candidates = [GEMMA_MODEL_ID, "gemma-2-9b-it", "gemma-2-27b-it"]
             resp = None
             used_model = GEMMA_MODEL_ID
             
