@@ -82,7 +82,7 @@ flowchart TD
     end
 
     subgraph GCPManaged["☁️ Google Cloud Enterprise Infrastructure"]
-        GAI["⚡ Google GenAI Developer API\n(gemma-4-31b-it / gemma-2-9b-it)"]
+        GAI["⚡ Google GenAI Developer API\n(gemma-2-9b-it / gemma-2-27b-it)"]
         VX["🧠 Vertex AI API\n(gemini-3.5-flash)"]
         SM["🔑 Secret Manager\n(warden-ed25519-private)"]
         FS[("🗄️ Firestore Database\n• warden_registry\n• warden_audit")]
@@ -424,7 +424,7 @@ gcloud run deploy warden-api \
   --memory 1Gi \
   --timeout 300 \
   --min-instances 1 \
-  --set-env-vars="GCP_PROJECT_ID=warden-507011,GCP_REGION=us-central1,MODEL_ID=gemini-3.5-flash,GEMMA_MODEL_ID=gemma-4-31b-it,GEMMA_ENABLED=true,GEMMA_API_KEY=YOUR_GEMINI_KEY,FIRESTORE_COLLECTION_REGISTRY=warden_registry_demo,FIRESTORE_COLLECTION_AUDIT=warden_audit_demo,MODEL_ARMOR_ENABLED=false,MODEL_ARMOR_TEMPLATE=warden-armor" \
+  --set-env-vars="GCP_PROJECT_ID=warden-507011,GCP_REGION=us-central1,MODEL_ID=gemini-3.5-flash,GEMMA_MODEL_ID=gemma-2-9b-it,GEMMA_ENABLED=true,GEMMA_API_KEY=YOUR_GEMINI_KEY,FIRESTORE_COLLECTION_REGISTRY=warden_registry_demo,FIRESTORE_COLLECTION_AUDIT=warden_audit_demo,MODEL_ARMOR_ENABLED=false,MODEL_ARMOR_TEMPLATE=warden-armor" \
   --set-secrets="SIGNING_KEY_PEM=warden-ed25519-private:latest,SIGNING_KEY_PUB_PEM=warden-ed25519-public:latest"
 ```
 
