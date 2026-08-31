@@ -5,10 +5,11 @@
 
 [![Google Cloud](https://img.shields.io/badge/Google_Cloud-Cloud_Run_%7C_Vertex_AI-4285F4?style=for-the-badge&logo=google-cloud&logoColor=white)](https://cloud.google.com/)
 [![Gemini](https://img.shields.io/badge/Model-Gemini_3.5_Flash-8E75B2?style=for-the-badge&logo=google-gemini&logoColor=white)](https://deepmind.google/technologies/gemini/)
+[![Gemma](https://img.shields.io/badge/Pre--Filter-Gemma_2-FF6F00?style=for-the-badge&logo=google&logoColor=white)](https://ai.google.dev/gemma)
 [![Framework](https://img.shields.io/badge/Framework-Google_ADK-34A853?style=for-the-badge&logo=python&logoColor=white)](https://github.com/google/agent-development-kit)
 [![Next.js](https://img.shields.io/badge/Frontend-Next.js_16_(Turbopack)-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)](https://nextjs.org/)
 [![Cryptography](https://img.shields.io/badge/Attestation-Ed25519_Digital_Signatures-FFB800?style=for-the-badge&logo=subversion&logoColor=black)](https://en.wikipedia.org/wiki/EdDSA)
-[![Tests](https://img.shields.io/badge/Tests-47%2F47_Passed-brightgreen?style=for-the-badge&logo=pytest&logoColor=white)](https://pytest.org/)
+[![Tests](https://img.shields.io/badge/Tests-49%2F49_Passed-brightgreen?style=for-the-badge&logo=pytest&logoColor=white)](https://pytest.org/)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
 
 <br/>
