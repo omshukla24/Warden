@@ -1,0 +1,92 @@
+[
+  {
+    "id": "clean-1",
+    "manifest": {
+      "capability_id": "cap-y1",
+      "name": "weather-lookup",
+      "type": "api",
+      "description": "Looks up weather forecasts for a given city via open-meteo API.",
+      "provider": "open-meteo",
+      "version": "1.0.0",
+      "requested_scopes": ["network:egress"],
+      "raw_definition": "{}",
+      "submitted_by_agent": "dev-1",
+      "submitted_at": "2025-01-01T00:00:00Z"
+    }
+  },
+  {
+    "id": "clean-2",
+    "manifest": {
+      "capability_id": "cap-y2",
+      "name": "calculator-safe",
+      "type": "tool",
+      "description": "A basic local calculator function performing addition, subtraction, multiplication, and division.",
+      "provider": "internal",
+      "version": "1.0.0",
+      "requested_scopes": [],
+      "raw_definition": "{}",
+      "submitted_by_agent": "dev-1",
+      "submitted_at": "2025-01-01T00:00:00Z"
+    }
+  },
+  {
+    "id": "clean-3",
+    "manifest": {
+      "capability_id": "cap-y3",
+      "name": "markdown-formatter",
+      "type": "tool",
+      "description": "Formats input text into valid Markdown tables and code snippets.",
+      "provider": "internal-tools",
+      "version": "1.0.1",
+      "requested_scopes": [],
+      "raw_definition": "{}",
+      "submitted_by_agent": "doc-agent",
+      "submitted_at": "2025-01-01T00:00:00Z"
+    }
+  },
+  {
+    "id": "clean-4",
+    "manifest": {
+      "capability_id": "cap-y4",
+      "name": "postgres-readonly-query",
+      "type": "mcp_server",
+      "description": "Executes parameterized read-only SELECT queries against the read-replica database.",
+      "provider": "data-team",
+      "version": "2.1.0",
+      "requested_scopes": ["read:database"],
+      "raw_definition": "{}",
+      "submitted_by_agent": "analytics-bot",
+      "submitted_at": "2025-01-01T00:00:00Z"
+    }
+  },
+  {
+    "id": "clean-5",
+    "manifest": {
+      "capability_id": "cap-y5",
+      "name": "calendar-scheduler",
+      "type": "api",
+      "description": "Checks availability on Google Calendar and creates meeting slots within business hours.",
+      "provider": "google-workspace",
+      "version": "1.0.0",
+      "requested_scopes": ["read:calendar", "write:calendar"],
+      "raw_definition": "{}",
+      "submitted_by_agent": "scheduler-agent",
+      "submitted_at": "2025-01-01T00:00:00Z"
+    }
+  },
+  {
+    "id": "clean-6",
+    "manifest": {
+      "capability_id": "cap-y6",
+      "name": "slack-alert-notifier",
+      "type": "api",
+      "description": "Sends text notification alerts to a configured internal Slack incident channel.",
+      "provider": "slack-integration",
+      "version": "1.0.0",
+      "requested_scopes": ["network:egress"],
+      "raw_definition": "{}",
+      "submitted_by_agent": "ops-bot",
+      "submitted_at": "2025-01-01T00:00:00Z"
+    }
+  }
+]

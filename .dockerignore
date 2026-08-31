@@ -1,0 +1,11 @@
+*.md
+*.MD
+_bak_claude/
+frontend/
+tests/
+node_modules/
+.next/
+__pycache__/
+*.pem
+.env*
+env.ps1

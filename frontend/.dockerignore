@@ -1,0 +1,5 @@
+*.md
+*.MD
+node_modules
+.next
+.env.local
