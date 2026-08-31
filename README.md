@@ -489,3 +489,16 @@ Warden/
 ## 📄 License
 
 This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
+
+---
+
+## 🏆 Hackathon & Submission Note
+
+> [!NOTE]
+> **Built for the Google AI & Devpost Agentic Hackathon**
+> 
+> * **Project**: WARDEN — Autonomous Capability Registry & Cryptographic Gatekeeper for Enterprise Agent Fleets
+> * **Track**: Fortified Enterprise Fleet
+> * **Creator**: Om Shukla
+> * **Google AI & Cloud Stack**: Google Agent Development Kit (ADK), Gemini 3.5 Flash (Vertex AI), Gemma 2 (Google GenAI Developer API), Google Cloud Run, Cloud Firestore, Google Secret Manager, Cloud Trace (OpenTelemetry), and Model Armor.
+
