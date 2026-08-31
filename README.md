@@ -9,7 +9,7 @@
 [![Next.js](https://img.shields.io/badge/Frontend-Next.js_16_(Turbopack)-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)](https://nextjs.org/)
 [![Cryptography](https://img.shields.io/badge/Attestation-Ed25519_Digital_Signatures-FFB800?style=for-the-badge&logo=subversion&logoColor=black)](https://en.wikipedia.org/wiki/EdDSA)
 [![Tests](https://img.shields.io/badge/Tests-47%2F47_Passed-brightgreen?style=for-the-badge&logo=pytest&logoColor=white)](https://pytest.org/)
-[![License](https://img.shields.io/badge/License-Apache_2.0-blue?style=for-the-badge)](LICENSE)
+[![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
 
 <br/>
 
@@ -32,11 +32,11 @@ Enterprises are rapidly deploying autonomous multi-agent fleets across mission-c
 
 ---
 
-## 🏆 Hackathon Track Alignment: Fortified Enterprise Fleet
+## 🏢 Enterprise Fleet Architecture & Core Capabilities
 
 Every component of WARDEN maps directly to the Google Cloud & ADK Enterprise Fleet architecture:
 
-| Enterprise Track Component | WARDEN Production Implementation | Google Cloud Technology |
+| Enterprise Architecture Component | WARDEN Production Implementation | Google Cloud Technology |
 | :--- | :--- | :--- |
 | **Agent Registry** | **Registrar**: Signed, versioned, immutable catalog of vetted capabilities | Google Cloud Firestore |
 | **Agent Runtime (Async)** | **Sweeper**: Continuous background re-vetting loop auto-revoking poisoned tools | Cloud Scheduler + Pub/Sub |
@@ -418,10 +418,5 @@ Warden/
 
 ## 📄 License
 
-This project is licensed under the **Apache License 2.0** — see the [LICENSE](LICENSE) file for details.
+This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
 
----
-
-<div align="center">
-  <sub>Built for the Google Cloud × Devpost <b>All Things Agentic Hackathon</b> • Track: <b>Fortified Enterprise Fleet</b></sub>
-</div>
