@@ -3,8 +3,9 @@ import os
 GCP_PROJECT_ID = os.environ.get("GCP_PROJECT_ID", "local-test-project")
 GCP_REGION = os.environ.get("GCP_REGION", "us-central1")
 MODEL_ID = os.environ.get("MODEL_ID", "gemini-3.5-flash")
-GEMMA_MODEL_ID = os.environ.get("GEMMA_MODEL_ID", "gemma-2-9b-it")
+GEMMA_MODEL_ID = os.environ.get("GEMMA_MODEL_ID", "gemma-4-31b-it")
 GEMMA_ENABLED = os.environ.get("GEMMA_ENABLED", "true").lower() == "true"
+GEMMA_API_KEY = os.environ.get("GEMMA_API_KEY", "")
 
 # Route the Google GenAI SDK / ADK to Vertex AI (uses gcloud ADC — no API key).
 # Gemini 3.x models on Vertex are ONLY served on the global endpoint, not regional (us-central1).

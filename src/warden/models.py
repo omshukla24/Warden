@@ -43,6 +43,7 @@ class VettingVerdict(BaseModel):
     summary: str = ""
     model_used: Optional[str] = ""
     vetted_at: Optional[str] = ""
+    prescreen: Optional[Dict[str, Any]] = None
 
 class ProvenanceEvent(BaseModel):
     event: Literal["SUBMITTED", "VETTED", "SIGNED", "REJECTED", "REVOKED"]

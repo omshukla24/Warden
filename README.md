@@ -280,7 +280,7 @@ gcloud auth application-default login
 ```
 
 #### Run Automated Test Suite
-WARDEN includes a comprehensive suite of 47 deterministic unit and integration tests:
+WARDEN includes a comprehensive suite of 49 deterministic unit and integration tests:
 
 ```bash
 pytest tests/ -m "not live"
@@ -402,7 +402,7 @@ Warden/
 │       ├── config.py              # Centralized environment settings
 │       ├── models.py              # Pydantic data schemas
 │       └── threat_taxonomy.py     # OWASP LLM Top 10 classifications & citations
-├── tests/                         # Test Suite (47 tests passed)
+├── tests/                         # Test Suite (49 tests passed)
 │   ├── fixtures/                  # Clean and poisoned manifest datasets
 │   ├── test_gatekeeper.py         # Runtime policy enforcement tests
 │   ├── test_inspector.py          # Gemini security evaluation tests
