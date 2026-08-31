@@ -88,3 +88,17 @@ async def screen_with_gemma(manifest: CapabilityManifest) -> GemmaScreenResult:
             summary="Suspicious directive or egress pattern detected" if has_injection else "Clean manifest",
             model=GEMMA_MODEL_ID
         )
+
+def screen_with_gemma_sync(manifest: CapabilityManifest) -> GemmaScreenResult:
+    """Synchronous entry point for Gemma 2 screening."""
+    import asyncio
+    try:
+        loop = asyncio.get_event_loop()
+        if loop.is_running():
+            import concurrent.futures
+            with concurrent.futures.ThreadPoolExecutor() as pool:
+                return pool.submit(lambda: asyncio.run(screen_with_gemma(manifest))).result()
+        return loop.run_until_complete(screen_with_gemma(manifest))
+    except Exception:
+        return asyncio.run(screen_with_gemma(manifest))
+
